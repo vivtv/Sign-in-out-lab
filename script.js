@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const signInContainer = document.getElementById("signInContainer");
     const userSpan = document.getElementById("user");
     const signOutButton = document.getElementById("signOut");
+    const passwordError = document.getElementById("passwordError");
 
     // Switch between Sign In and Sign Up forms
     document.getElementById("switchToSignIn").addEventListener("click", function () {
@@ -23,6 +24,14 @@ document.addEventListener("DOMContentLoaded", function () {
         event.preventDefault();
         const newUsername = document.getElementById("newUsername").value;
         const newPassword = document.getElementById("newPassword").value;
+        const confirmPassword = document.getElementById("confirmPassword").value;
+
+        if (newPassword !== confirmPassword) {
+            passwordError.style.display = "block";
+            return;
+        } else {
+            passwordError.style.display = "none";
+        }
 
         if (localStorage.getItem(newUsername)) {
             alert("Username already exists. Please choose another.");
